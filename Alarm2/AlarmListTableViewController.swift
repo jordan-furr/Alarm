@@ -65,6 +65,6 @@ extension AlarmListTableViewController: SwitchTableViewCellDelegate {
         AlarmController.toggleIsON(for: alarm)
         cell.updateViews()
         tableView.reloadData()
+        
     }
-    
 }
