@@ -22,6 +22,7 @@ class DetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViews()
+        updateAlarm()
     }
     
     //MARK: - IB Outlets & Actions
@@ -30,7 +31,7 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var enableButton: UIButton!
     @IBAction func enableButtonTapped(_ sender: Any) {
         alarmIsOn = !alarmIsOn
-        updateViews()
+        updateAlarm()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -46,10 +47,13 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
-
-
-    
     func updateViews(){
+        guard let alarm = self.alarm else { return }
+        datePicked.setDate(alarm.date, animated: false)
+        alarmName.text = alarm.name
+    }
+    
+    func updateAlarm(){
         if alarmIsOn {
             enableButton.setTitle("Turn OFF", for: .normal)
             enableButton.backgroundColor = .red
@@ -57,9 +61,5 @@ class DetailTableViewController: UITableViewController {
             enableButton.setTitle("Turn ON", for: .normal)
             enableButton.backgroundColor = .green
         }
-       
-        guard let alarm = self.alarm else { return }
-        datePicked.setDate(alarm.date, animated: false)
-        alarmName.text = alarm.name
     }
 }

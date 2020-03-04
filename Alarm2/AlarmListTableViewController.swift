@@ -62,7 +62,7 @@ extension AlarmListTableViewController: SwitchTableViewCellDelegate {
     func switchCellSwitchValueChanged(for cell: SwitchTableViewCell) {
         guard let index = tableView.indexPath(for: cell) else { return }
         let alarm = AlarmController.shared.alarms[index.row]
-        AlarmController.toggleIsON(for: alarm)
+        AlarmController.shared.toggleIsON(for: alarm)
         cell.updateViews()
         tableView.reloadData()
         
